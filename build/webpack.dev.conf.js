@@ -1,5 +1,6 @@
 'use strict'
 const utils = require('./utils')
+const express = require('express')
 const webpack = require('webpack')
 const config = require('../config')
 const merge = require('webpack-merge')
@@ -10,6 +11,42 @@ const portfinder = require('portfinder')
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
+
+
+
+var app = express();
+
+var appData = require('../data.json');
+var seller = appData.seller;
+var goods = appData.goods;
+var ratings = appData.ratings;
+
+var apiRoutes = express.Router();
+
+app.use('/api', apiRoutes);
+
+apiRoutes.get('/seller', function (req, res) {
+  res.json({
+    errno: 0,
+    data: seller
+  });
+});
+
+apiRoutes.get('/goods', function (req, res) {
+  res.json({
+    errno: 0,
+    data: goods
+  });
+});
+
+apiRoutes.get('/ratings', function (req, res) {
+  res.json({
+    errno: 0,
+    data: ratings
+  });
+});
+
+
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
