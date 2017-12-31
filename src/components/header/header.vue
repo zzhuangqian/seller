@@ -18,7 +18,7 @@
 
       </div>
     </div>
-    <div class="bulletin-wrapper">
+    <div class="bulletin-wrapper" @click="showDetail">
       <span class="bulletin-title">
         gonggao
       </span>
@@ -27,7 +27,7 @@
       </span>
       <i>jiantou</i>
     </div>
-    <div class="detail">
+    <div class="detail" v-show="detailShow" transition="fade">
       <div class="detail-wrapper">
         <div class="detail-main">
           <h1 class="name">商家名</h1>
@@ -55,7 +55,7 @@
           </div>
         </div>
       </div>
-      <div class="detail-close">
+      <div class="detail-close" @click="hideDetail">
         <i>close</i>
       </div>
     </div>
@@ -69,6 +69,19 @@
     name: 'vheader',
     props: {
       type: Object
+    },
+    data () {
+      return {
+        detailShow: false
+      }
+    },
+    methods: {
+      showDetail () {
+        this.detailShow = true
+      },
+      hideDetail () {
+        this.detailShow = false
+      }
     },
     components: {
       'star': star
@@ -143,8 +156,15 @@
       left: 0
       width: 100%
       height: 100%
-      overflow: hidden
-      background: blue
+      overflow: auto
+      transition: all 1s
+      background:rgba(7, 17, 27, 0.8)
+      &.fade-transition
+        opacity: 1
+        background:rgba(7, 17, 27, 0.8)
+      &.fade-enter, &.fade-leave
+        opacity: 0
+        background:rgba(7, 17, 27, 0)
       .detail-wrapper
         width: 100%
         min-height: 100%
