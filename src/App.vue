@@ -18,7 +18,7 @@
 
       </div>
     </div>
-    <router-view></router-view>
+    <router-view ></router-view>
 
   </div>
 </template>
@@ -35,12 +35,10 @@
       }
     },
     created () {
-      // this.$http.get('/api/seller')
-      //   .then((resoponse) => {
-      //     resoponse = resoponse.body()
-      //     if (resoponse.code === 0) {
-      //       this.sell = resoponse.data
-      //     }
+      // this.$http.get('./data.json')
+      //   .then((response) => {
+      //     console.log(response)
+      //       this.seller = response.body.seller
       //   })
     },
 
